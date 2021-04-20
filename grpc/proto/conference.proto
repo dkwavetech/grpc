@@ -1,0 +1,21 @@
+syntax = "proto3"; // PHP only supports proto3 syntax
+
+package infra.conference; // for adding the namespace in the generated class
+
+option php_generic_services = true; // we want to generate an interface for the service
+
+service Conference {
+    rpc getSpeaker (SpeakerRequest) returns (SpeakerReply) {}
+}
+
+// The number after each field name assignment is the tag, it’s used to uniquely identify the field when the message is serialized to the binary format
+
+message SpeakerRequest {
+    int32 id = 1;
+}
+
+message SpeakerReply {
+    int32 id = 1;
+    string name = 2;
+    string talk = 3;
+}

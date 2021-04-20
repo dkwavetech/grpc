@@ -1,0 +1,21 @@
+/var/cache/*
+.env
+/var/logs/*
+/build/
+/vendor/
+/composer.phar
+
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+
+
+# IDE specificities
+# Netbean
+nbproject/
+# Gedit
+*~
+# Eclipse
+.project
