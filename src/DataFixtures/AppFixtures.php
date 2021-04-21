@@ -10,6 +10,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        // 1
         $speaker = new Speaker();
         $speaker
             ->setName('danielle')
@@ -17,6 +18,7 @@ class AppFixtures extends Fixture
 
         $manager->persist($speaker);
 
+        // 2
         // will be put in a loop @todo
         $speaker = new Speaker();
         $speaker

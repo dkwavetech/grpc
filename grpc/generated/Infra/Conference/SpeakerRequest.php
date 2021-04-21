@@ -17,6 +17,10 @@ class SpeakerRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 id = 1;</code>
      */
     protected $id = 0;
+    /**
+     * Generated from protobuf field <code>string name = 2;</code>
+     */
+    protected $name = '';
 
     /**
      * Constructor.
@@ -25,6 +29,7 @@ class SpeakerRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $id
+     *     @type string $name
      * }
      */
     public function __construct($data = NULL) {
@@ -50,6 +55,28 @@ class SpeakerRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string name = 2;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Generated from protobuf field <code>string name = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }
