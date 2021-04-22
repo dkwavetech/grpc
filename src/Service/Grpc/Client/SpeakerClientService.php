@@ -5,10 +5,19 @@ namespace App\Service\Grpc\Client;
 use Google\Protobuf\Internal\Message;
 use Infra\Conference\SpeakerReply;
 use Infra\Conference\SpeakerRequest;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class SpeakerClientService
 {
     public const GET_METHOD_SERVICE = 'getSpeaker';
+
+    /** @var HttpClientInterface */
+    private $client;
+
+    public function __construct(HttpClientInterface $client)
+    {
+        $this->client = $client;
+    }
 
     /**
      * {@inheritDoc}
@@ -25,19 +34,12 @@ class SpeakerClientService
     {
         $body = $message->serializeToString();
 
-        $ch = curl_init("http://127.0.0.1:8000/{$method}");
+        $response = $this->client->request(
+            "GET",
+            "http://127.0.0.1:8000/{$method}",
+            ['body' => $body]
+        );
 
-        curl_setopt_array($ch, [
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_POST           => true,
-            CURLOPT_POSTFIELDS     => $body,
-        ]);
-
-        $response = curl_exec($ch);
-
-        curl_close($ch);
-
-
-        return $response;
+        return $response->getContent();
     }
 }
